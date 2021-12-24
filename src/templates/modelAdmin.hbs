@@ -1,0 +1,8 @@
+@admin.register({{name}})
+    class {{name}}Admin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        {{#each fields}}
+        '{{this.name}}',
+        {{/each}}
+    )

@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
 
-interface ModelClass {
+export interface ModelClass {
     name: string
     parentName: string
     fileUri: string
     fields: vscode.DocumentSymbol[]
 }
 
-async function searchForModels(){
+export async function searchForModels(){
     let modelFiles = await vscode.workspace.findFiles("**/models.py");
     let results: ModelClass[] = [];
     for (const uri of modelFiles){
@@ -29,5 +29,3 @@ async function searchForModels(){
     // console.log(results);
     return results;
 }
-
-export { searchForModels };
