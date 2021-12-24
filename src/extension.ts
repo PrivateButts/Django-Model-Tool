@@ -1,26 +1,49 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { searchForModels } from './Parser';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "django-model-tool" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('django-model-tool.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Django Model Tool!');
+	let disposable = vscode.commands.registerCommand('django-model-tool.show-models', () => {
+		searchForModels();
 	});
-
 	context.subscriptions.push(disposable);
+
+
+	let genModelAdmin = vscode.commands.registerCommand('django-model-tool.generate-model-admin', async () => {
+		let editor = vscode.window.activeTextEditor;
+		if(!editor){
+			return;
+		}
+
+		let models = await searchForModels();
+		let modelSelection = await vscode.window.showQuickPick(
+			models.map(m => m.name)
+		);
+
+		if(!modelSelection){
+			return;
+		}
+		
+		let model = models.find(m => m.name === modelSelection);
+		if(modelSelection){
+			editor.edit(function(e){
+				e.insert(
+					editor!.selection.start,
+					`
+@admin.register(${modelSelection})
+class ${modelSelection}Admin(admin.ModelAdmin):
+	list_display = (
+		'id',
+		'${model!.fields.map(f => f.name).join("',\n\t\t'")}',
+	)
+
+`);
+			});
+		}
+	});
+	context.subscriptions.push(genModelAdmin);
+
+	console.log("Registered");
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}

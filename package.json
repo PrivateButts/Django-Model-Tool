@@ -10,14 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:django-model-tool.helloWorld"
+        "onCommand:django-model-tool.show-models",
+        "onCommand:django-model-tool.generate-model-admin"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "django-model-tool.helloWorld",
-				"title": "Hello World"
+				"command": "django-model-tool.show-models",
+				"title": "Show models"
+			},
+			{
+				"command": "django-model-tool.generate-model-admin",
+				"title": "Generate model admin"
 			}
 		]
 	},
