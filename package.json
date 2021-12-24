@@ -1,7 +1,7 @@
 {
   "name": "django-model-tool",
 	"displayName": "Django Model Tool",
-	"description": "A generator for model related classes",
+	"description": "This extension is to assist in the generation of the boilerplate code used for tools like the Django Admin",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.63.0"
