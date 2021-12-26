@@ -30,7 +30,25 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		let model = await showModelPicker();
+		if(!model){
+			return;
+		}
+
+		let fields = model!.fields.map(f => f.name);
+		fields.unshift('id');
+
+		let quote = Config.getSetting('FieldListSingleQuote', false) ? '\'' : '"';
+		let joinStr = Config.getSetting('FieldListNewLines', false) ? `${quote},\n${quote}` : `${quote}, ${quote}`;
+
+		editor.edit(function(e){
+			e.insert(
+				editor!.selection.start,
+				quote + fields.join(joinStr) + quote
+			);
+		});
 	});
+	context.subscriptions.push(genFieldList);
+
 	console.log("Registered");
 }
 

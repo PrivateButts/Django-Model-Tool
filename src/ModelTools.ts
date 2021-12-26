@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { searchForModels, ModelClass } from './Parser';
 import { Config } from './Config';
 
-const Handlebars = require("handlebars");
+const HANDLEBARS = require("handlebars");
 
 
 export async function showModelPicker(){
@@ -25,6 +25,6 @@ export function compileTemplate(templateName: string, templateData: ModelClass){
         return;
     }
 
-    let compiled = Handlebars.compile(template);
+    let compiled = HANDLEBARS.compile(template);
     return compiled(templateData);
 }

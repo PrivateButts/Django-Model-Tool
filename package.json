@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:django-model-tool.show-models",
-    "onCommand:django-model-tool.generate-model-admin"
+    "onCommand:django-model-tool.generate-model-admin",
+    "onCommand:django-model-tool.generate-field-list"
   ],
   "main": "./dist/extension.js",
   "scripts": {
@@ -53,6 +54,10 @@
       {
         "command": "django-model-tool.generate-model-admin",
         "title": "Generate model admin"
+      },
+      {
+        "command": "django-model-tool.generate-field-list",
+        "title": "Generate field list from model"
       }
     ],
     "configuration": {
@@ -63,6 +68,16 @@
           "editPresentation": "multilineText",
           "description": "The template used for Model Admin generation",
           "default": "@admin.register({{name}})\nclass {{name}}Admin(admin.ModelAdmin):\n\tlist_display = (\n\t\t'id',\n\t\t{{#each fields}}\n\t\t'{{this.name}}',\n\t\t{{/each}}\n\t)"
+        },
+        "django-model-tool.FieldListNewLines": {
+          "type": "boolean",
+          "description": "Breaks the generated field list up into multiple lines",
+          "default": true
+        },
+        "django-model-tool.FieldListSingleQuote": {
+          "type": "boolean",
+          "description": "Use single quotes for field list",
+          "default": false
         }
       }
     }
