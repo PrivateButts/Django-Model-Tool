@@ -66,7 +66,7 @@
         "django-model-tool.templates.modelAdmin": {
           "type": "string",
           "editPresentation": "multilineText",
-          "description": "The template used for Model Admin generation",
+          "description": "The template used for Model Admin generation. See []() for more information.",
           "default": "@admin.register({{name}})\nclass {{name}}Admin(admin.ModelAdmin):\n\tlist_display = (\n\t\t'id',\n\t\t{{#each fields}}\n\t\t'{{this.name}}',\n\t\t{{/each}}\n\t)"
         },
         "django-model-tool.FieldListNewLines": {
