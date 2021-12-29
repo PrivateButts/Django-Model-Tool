@@ -23,6 +23,25 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	context.subscriptions.push(genModelAdmin);
 
+	let genDRFModelSerializer = vscode.commands.registerCommand('django-model-tool.generate-drf-model-serializer', async () => {
+		let editor = vscode.window.activeTextEditor;
+		if(!editor){
+			return;
+		}
+
+		let model = await showModelPicker();
+		
+		if(model){
+			editor.edit(function(e){
+				e.insert(
+					editor!.selection.start,
+						compileTemplate('DRFModelSerializer', model!)
+					);
+			});
+		}
+	});
+	context.subscriptions.push(genDRFModelSerializer);
+
 	let genFieldList = vscode.commands.registerCommand('django-model-tool.generate-field-list', async () => {
 		let editor = vscode.window.activeTextEditor;
 		if(!editor){

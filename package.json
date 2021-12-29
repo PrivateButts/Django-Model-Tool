@@ -18,6 +18,7 @@
   ],
   "activationEvents": [
     "onCommand:django-model-tool.generate-model-admin",
+    "onCommand:django-model-tool.generate-drf-model-serializer",
     "onCommand:django-model-tool.generate-field-list"
   ],
   "main": "./dist/extension.js",
@@ -63,6 +64,11 @@
         "category": "Django Model Tool"
       },
       {
+        "command": "django-model-tool.generate-drf-model-serializer",
+        "title": "Generate DRF model serializer",
+        "category": "Django Model Tool"
+      },
+      {
         "command": "django-model-tool.generate-field-list",
         "title": "Generate field list from model",
         "category": "Django Model Tool"
@@ -92,6 +98,12 @@
           "editPresentation": "multilineText",
           "markdownDescription": "The template used for Model Admin generation. [Refer to this doc page for more information.](https://github.com/PrivateButts/Django-Model-Tool/blob/main/docs/templates.md#model-admin)",
           "default": "@admin.register({{name}})\nclass {{name}}Admin(admin.ModelAdmin):\n\tlist_display = (\n\t\t'id',\n\t\t{{#each fields}}\n\t\t'{{this.name}}',\n\t\t{{/each}}\n\t)"
+        },
+        "django-model-tool.templates.DRFModelSerializer": {
+          "type": "string",
+          "editPresentation": "multilineText",
+          "markdownDescription": "The template used for DRF Model Serializer generation. [Refer to this doc page for more information.](https://github.com/PrivateButts/Django-Model-Tool/blob/main/docs/templates.md#drf-model-serializer)",
+          "default": "class {{name}}Serializer(serializers.ModelSerializer):\n\tclass Meta:\n\t\tmodel = {{name}}\n\t\tfields = (\n\t\t\t'id',\n\t\t\t{{#each fields}}\n\t\t\t'{{this.name}}',\n\t\t\t{{/each}}\n\t\t)"
         }
       }
     }

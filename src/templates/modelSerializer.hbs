@@ -1,0 +1,9 @@
+class {{name}}Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = {{name}}
+        fields = (
+            'id',
+            {{#each fields}}
+            '{{this.name}}',
+            {{/each}}
+        )
