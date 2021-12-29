@@ -14,7 +14,7 @@ function modelQuickPickItems(models: ModelClass[]): ModelQuickPickItem[] {
     let qpis = models.map(m => {
         return {
             label: m.name,
-            description: m.parentName,
+            description: m.parentFolderName,
             model: m
         };
     });
@@ -40,9 +40,9 @@ function modelQuickPickItems(models: ModelClass[]): ModelQuickPickItem[] {
     if(Config.getSetting('PreferModelsInSameFolder', true)){
         let currentFolderName = vscode.window.activeTextEditor?.document.fileName.split('/').slice(-2)[0];
         qpis.sort((a, b) => {
-            if(a.model.parentName === currentFolderName && b.model.parentName !== currentFolderName){
+            if(a.model.parentFolderName === currentFolderName && b.model.parentFolderName !== currentFolderName){
                 return -1;
-            }else if(b.model.parentName === currentFolderName && a.model.parentName !== currentFolderName){
+            }else if(b.model.parentFolderName === currentFolderName && a.model.parentFolderName !== currentFolderName){
                 return 1;
             }else{
                 return 0;

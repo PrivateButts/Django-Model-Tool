@@ -70,5 +70,3 @@ export function activate(context: vscode.ExtensionContext) {
 
 	console.log("Registered");
 }
-
-export function deactivate() {}
