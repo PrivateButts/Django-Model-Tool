@@ -2,6 +2,7 @@
   "name": "django-model-tool",
   "displayName": "Django Model Tool",
   "description": "This extension is to assist in the generation of the boilerplate code used for tools like the Django Admin",
+  "publisher": "CrunchSlashDev",
   "version": "0.0.1",
   "preview": true,
 	"icon": "img/logo128.png",
