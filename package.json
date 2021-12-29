@@ -3,6 +3,12 @@
   "displayName": "Django Model Tool",
   "description": "This extension is to assist in the generation of the boilerplate code used for tools like the Django Admin",
   "version": "0.0.1",
+  "preview": true,
+	"icon": "img/logo128.png",
+	"galleryBanner":{
+		"color": "#2D8507",
+		"theme": "dark"
+	},
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -44,15 +50,21 @@
   "dependencies": {
     "handlebars": "^4.7.7"
   },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/PrivateButts/Django-Model-Tool"
+	},
   "contributes": {
     "commands": [
       {
         "command": "django-model-tool.generate-model-admin",
-        "title": "Generate model admin"
+        "title": "Generate model admin",
+        "category": "Django Model Tool"
       },
       {
         "command": "django-model-tool.generate-field-list",
-        "title": "Generate field list from model"
+        "title": "Generate field list from model",
+        "category": "Django Model Tool"
       }
     ],
     "configuration": {
