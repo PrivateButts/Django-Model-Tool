@@ -8,14 +8,26 @@ This extension is to assist in the generation of the boilerplate code used for t
 
 * Generates basic ModelAdmins
 
+## Configuration Options
+
+All keys live under `django-model-tool`
+
+Key | Type | Description
+-|-|-
+PreferModelsInSameFolder | boolean | When a model picker will be displayed, setting this option to true will cause models in the same folder as the active document to be pushed to the top of the list.
+FieldListNewLines | boolean | When using the basic model field list generator, render each item on a new line
+FieldListSingleQuote | boolean | When using the basic model field list generator, render each item surrounded in single quotes instead of double
+templates.modelAdmin | Multiline String | The template rendered for Model Admin generation. [Refer to this doc page for more information.](https://github.com/PrivateButts/Django-Model-Tool/blob/main/docs/templates.md#model-admin)
+
 ## Goals
 
 * Better ModelAdmin
 * Generation of DRF Serializers
 * Generation of GQL Inputs Types
-* Basic list insert of class members for bodging purposes
-* Customizable Templates
-* Smarter ordering of models based on currently opened files
+* Error messages
+* ~~Basic list insert of class members for bodging purposes~~
+* ~~Customizable Templates~~
+* ~~Smarter ordering of models based on currently opened files~~
 
 ## Known issues
 

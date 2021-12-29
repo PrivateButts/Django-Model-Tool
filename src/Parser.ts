@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 
+
 export interface ModelClass {
     name: string
     parentName: string
@@ -7,7 +8,8 @@ export interface ModelClass {
     fields: vscode.DocumentSymbol[]
 }
 
-export async function searchForModels(){
+
+export async function searchForModels(): Promise<ModelClass[]> {
     let modelFiles = await vscode.workspace.findFiles("**/models.py");
     let results: ModelClass[] = [];
     for (const uri of modelFiles){
@@ -26,6 +28,5 @@ export async function searchForModels(){
             });
         }
     }
-    // console.log(results);
     return results;
 }

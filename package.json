@@ -10,7 +10,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:django-model-tool.show-models",
     "onCommand:django-model-tool.generate-model-admin",
     "onCommand:django-model-tool.generate-field-list"
   ],
@@ -48,10 +47,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "django-model-tool.show-models",
-        "title": "Show models"
-      },
-      {
         "command": "django-model-tool.generate-model-admin",
         "title": "Generate model admin"
       },
@@ -63,21 +58,27 @@
     "configuration": {
       "title": "Django Model Tool Config",
       "properties": {
-        "django-model-tool.templates.modelAdmin": {
-          "type": "string",
-          "editPresentation": "multilineText",
-          "description": "The template used for Model Admin generation. See []() for more information.",
-          "default": "@admin.register({{name}})\nclass {{name}}Admin(admin.ModelAdmin):\n\tlist_display = (\n\t\t'id',\n\t\t{{#each fields}}\n\t\t'{{this.name}}',\n\t\t{{/each}}\n\t)"
+        "django-model-tool.PreferModelsInSameFolder": {
+          "type": "boolean",
+          "description": "Prefer models in the same folder as the model file. This will float them to the top of the list.",
+          "default": true,
+          "order": 0
         },
-        "django-model-tool.FieldListNewLines": {
+        "django-model-tool.fieldList.UseNewLines": {
           "type": "boolean",
           "description": "Breaks the generated field list up into multiple lines",
           "default": true
         },
-        "django-model-tool.FieldListSingleQuote": {
+        "django-model-tool.fieldList.UseSingleQuote": {
           "type": "boolean",
           "description": "Use single quotes for field list",
           "default": false
+        },
+        "django-model-tool.templates.modelAdmin": {
+          "type": "string",
+          "editPresentation": "multilineText",
+          "markdownDescription": "The template used for Model Admin generation. [Refer to this doc page for more information.](https://github.com/PrivateButts/Django-Model-Tool/blob/main/docs/templates.md#model-admin)",
+          "default": "@admin.register({{name}})\nclass {{name}}Admin(admin.ModelAdmin):\n\tlist_display = (\n\t\t'id',\n\t\t{{#each fields}}\n\t\t'{{this.name}}',\n\t\t{{/each}}\n\t)"
         }
       }
     }

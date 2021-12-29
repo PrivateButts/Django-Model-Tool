@@ -37,8 +37,8 @@ export function activate(context: vscode.ExtensionContext) {
 		let fields = model!.fields.map(f => f.name);
 		fields.unshift('id');
 
-		let quote = Config.getSetting('FieldListSingleQuote', false) ? '\'' : '"';
-		let joinStr = Config.getSetting('FieldListNewLines', false) ? `${quote},\n${quote}` : `${quote}, ${quote}`;
+		let quote = Config.getSetting('fieldList.UseSingleQuote', false) ? '\'' : '"';
+		let joinStr = Config.getSetting('fieldList.UseNewLines', false) ? `${quote},\n${quote}` : `${quote}, ${quote}`;
 
 		editor.edit(function(e){
 			e.insert(
